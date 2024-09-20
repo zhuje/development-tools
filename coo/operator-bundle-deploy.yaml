@@ -1,0 +1,5 @@
+operator-sdk run bundle \
+    quay.io/gbernal/observability-operator-bundle:0.4.0-dev-tp \
+    --install-mode AllNamespaces \
+    --namespace operators \
+--security-context-config restricted

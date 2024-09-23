@@ -8,7 +8,7 @@ https://github.com/rhobs/observability-operator/blob/main/docs/user-guides/obser
 | 0.3.0+          | 4.11 - 4.15         |       ✔        |             ✔           |       ✔     |             ✘             |
 | 0.3.0+          | 4.16+               |       ✔        |             ✔           |       ✔     |             ✔             |
 
-ROSA Clusters 
+### ROSA Clusters 
 Requires a STS role 
 'ManagedOpenShift'
 

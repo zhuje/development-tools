@@ -33,7 +33,10 @@ data:
                         "bars": false,
                         "dashLength": 10,
                         "dashes": false,
-                        "datasource": "cluster-prometheus-proxy",
+                        "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                        },
                         "fill": 10,
                         "id": 1,
                         "interval": "1m",
@@ -171,7 +174,10 @@ data:
                         "bars": false,
                         "dashLength": 10,
                         "dashes": false,
-                        "datasource": "cluster-prometheus-proxy",
+                        "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                        },
                         "fill": 1,
                         "id": 2,
                         "interval": "1m",
@@ -494,7 +500,10 @@ data:
                         "bars": false,
                         "dashLength": 10,
                         "dashes": false,
-                        "datasource": "cluster-prometheus-proxy",
+                        "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                        },
                         "fill": 10,
                         "id": 3,
                         "interval": "1m",
@@ -632,7 +641,10 @@ data:
                         "bars": false,
                         "dashLength": 10,
                         "dashes": false,
-                        "datasource": "cluster-prometheus-proxy",
+                        "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                        },
                         "fill": 1,
                         "id": 4,
                         "interval": "1m",
@@ -955,7 +967,10 @@ data:
                         "bars": false,
                         "dashLength": 10,
                         "dashes": false,
-                        "datasource": "cluster-prometheus-proxy",
+                        "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                        },
                         "fill": 1,
                         "id": 5,
                         "interval": "1m",
@@ -1278,7 +1293,10 @@ data:
                         "bars": false,
                         "dashLength": 10,
                         "dashes": false,
-                        "datasource": "cluster-prometheus-proxy",
+                        "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                        },
                         "fill": 10,
                         "id": 6,
                         "interval": "1m",
@@ -1367,7 +1385,10 @@ data:
                         "bars": false,
                         "dashLength": 10,
                         "dashes": false,
-                        "datasource": "cluster-prometheus-proxy",
+                        "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                        },
                         "fill": 10,
                         "id": 7,
                         "interval": "1m",
@@ -1468,7 +1489,10 @@ data:
                         "bars": false,
                         "dashLength": 10,
                         "dashes": false,
-                        "datasource": "cluster-prometheus-proxy",
+                        "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                        },
                         "fill": 10,
                         "id": 8,
                         "interval": "1m",
@@ -1557,7 +1581,10 @@ data:
                         "bars": false,
                         "dashLength": 10,
                         "dashes": false,
-                        "datasource": "cluster-prometheus-proxy",
+                        "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                        }, 
                         "fill": 10,
                         "id": 9,
                         "interval": "1m",
@@ -1658,7 +1685,10 @@ data:
                         "bars": false,
                         "dashLength": 10,
                         "dashes": false,
-                        "datasource": "cluster-prometheus-proxy",
+                        "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                        },
                         "fill": 10,
                         "id": 10,
                         "interval": "1m",
@@ -1747,7 +1777,10 @@ data:
                         "bars": false,
                         "dashLength": 10,
                         "dashes": false,
-                        "datasource": "cluster-prometheus-proxy",
+                        "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                        },
                         "fill": 10,
                         "id": 11,
                         "interval": "1m",
@@ -1848,7 +1881,10 @@ data:
                         "bars": false,
                         "dashLength": 10,
                         "dashes": false,
-                        "datasource": "cluster-prometheus-proxy",
+                        "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                        },
                         "fill": 10,
                         "id": 12,
                         "interval": "1m",
@@ -1937,7 +1973,10 @@ data:
                         "bars": false,
                         "dashLength": 10,
                         "dashes": false,
-                        "datasource": "cluster-prometheus-proxy",
+                        "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                        },
                         "fill": 10,
                         "id": 13,
                         "interval": "1m",
@@ -2057,7 +2096,10 @@ data:
                         "text": "",
                         "value": ""
                     },
-                    "datasource": "cluster-prometheus-proxy",
+                    "datasource": {
+                            "name": "cluster-prometheus-proxy",
+                            "type": "prometheus"
+                    },
                     "hide": 2,
                     "includeAll": false,
                     "label": null,
@@ -2084,7 +2126,10 @@ data:
                         "text": "",
                         "value": ""
                     },
-                    "datasource": "cluster-prometheus-proxy",
+                    "datasource": {
+                        "name": "cluster-prometheus-proxy",
+                        "type": "prometheus"
+                    },
                     "hide": 0,
                     "includeAll": false,
                     "label": null,
@@ -2114,7 +2159,10 @@ data:
                         "text": "deployment",
                         "value": "deployment"
                     },
-                    "datasource": "cluster-prometheus-proxy",
+                    "datasource": {
+                        "name": "cluster-prometheus-proxy",
+                        "type": "prometheus"
+                    },
                     "definition": "label_values(namespace_workload_pod:kube_pod_owner:relabel{cluster=\"$cluster\", namespace=\"$namespace\", workload=~\".+\"}, workload_type)",
                     "hide": 0,
                     "includeAll": false,

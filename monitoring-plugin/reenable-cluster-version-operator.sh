@@ -1,1 +1,0 @@
-oc patch clusterversion version --type json -p "$(cat enable-monitoring.yaml)"

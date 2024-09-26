@@ -14,3 +14,6 @@ PHONY: monitoring-cleanup
 monitoring-cleanup:
 	oc patch clusterversion version --type json -p "$(cat enable-monitoring.yaml)"
 
+PHONY: test-user
+test-user:
+	cd test-user && ./create-htpsswd-test-user.sh

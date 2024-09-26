@@ -3,21 +3,24 @@
 # Prerequisites 
 # 1) Must be logged in to an OpenShift cluster as a cluster adminstrator 
 
-# Enviornment variables  
-OCP=$(oc version --output json | jq -r '.openshiftVersion')
-echo $OCP
-OCP_VERSION="${OCP:0:4}"
-echo "$OCP_VERSION"
-
-# OCP_VERSION=4.18
-OPERATOR_BUNDLE_V04=${OPERATOR_BUNDLE_V04:="quay.io/gbernal/observability-operator-bundle:0.4.0-dev-tp"}
-OPERATOR_BUNDLE_V03=${OPERATOR_BUNDLE_V03:="quay.io/gbernal/observability-operator-bundle:0.3.0-ui-v1-10"}
-OPERATOR_BUNDLE_V02=${OPERATOR_BUNDLE_V02:="quay.io/gbernal/observability-operator-bundle:0.2.0-dev-3"}
-
 # Terminal output colors 
 GREEN='\033[0;32m'
 ENDCOLOR='\033[0m' # No Color
 RED='\033[0;31m'
+
+# Enviornment variables: Observability operator test images 
+OPERATOR_BUNDLE=${OPERATOR_BUNDLE:="quay.io/gbernal/observability-operator-bundle:0.4.0-dev-tp"}
+printf "\n${GREEN} OPERATOR_BUNDLE: $OPERATOR_BUNDLE ${ENDCOLOR}\n"
+
+# OpenShift Version
+OCP=$(oc version --output json | jq -r '.openshiftVersion')
+OCP_VERSION="${OCP:0:4}"
+printf "\n${GREEN} OCP version: $OCP_VERSION ${ENDCOLOR}\n"
+
+# Resources for other Observability operator test image versions
+OPERATOR_BUNDLE_V04=${OPERATOR_BUNDLE_V04:="quay.io/gbernal/observability-operator-bundle:0.4.0-dev-tp"}
+OPERATOR_BUNDLE_V03=${OPERATOR_BUNDLE_V03:="quay.io/gbernal/observability-operator-bundle:0.3.0-ui-v1-10"}
+OPERATOR_BUNDLE_V02=${OPERATOR_BUNDLE_V02:="quay.io/gbernal/observability-operator-bundle:0.2.0-dev-3"}
 
 deploy_observability_operator(){
     echo "Deploying Observability Operator with $1"
@@ -30,14 +33,14 @@ deploy_observability_operator(){
 }
 
 deploy_dashboards() {
-    (cd  ../coo && oc apply -f ui-plugin-dashboards.yaml )
     (cd  ../dashboards && ./deploy-dashboards.sh )
+    (cd  ../coo && oc apply -f ui-plugin-dashboards.yaml )
 }
 
 deploy_korrel8r(){
     printf "\n${GREEN} *** Deploying Korrel8r, Logging, Network Observability *** ${ENDCOLOR}\n"
-    (cd  ../coo && oc apply -f ui-plugin-logging.yaml )
     (cd  ../korrel8r && cd openshift && make operators && make resources)
+    (cd  ../coo && oc apply -f ui-plugin-logging.yaml )
 }
 
 deploy_troubleshooting(){
@@ -45,38 +48,46 @@ deploy_troubleshooting(){
     (cd  ../coo && oc apply -f ui-plugin-troubleshooting.yaml )
 }
 
-printf "\n${GREEN} OCP version: $OCP_VERSION ${ENDCOLOR}\n"
+print(){
+    echo
+    echo $1 
+    echo
+}
+
+print_title(){
+    echo
+    printf "${GREEN}*** $1 ***${ENDCOLOR}"
+    echo
+}
 
 # Deploy UIPlugins and Observability Operator based on OpenShift Version 
 if [[ $(bc <<< "$OCP_VERSION == 4.11") -eq 1 ]]; then
-    echo "OCP 4.11 compatabile resources..."
-    echo "COO: 0.2.0"
-    echo "UIPlugins: dashboards\n"
+    print_title "Deploying OCP 4.11 compatabile resources..."
+    print "COO: 0.2.0"
+    print "UIPlugins: dashboards"
 
     deploy_observability_operator $OPERATOR_BUNDLE_V02
     deploy_dashboards
-    oc patch consoles.operator.openshift.io/cluster --type=merge --patch '{ "spec": { "plugins": ["monitoring-plugin", "console-dashboards-plugin"]}}'
-
+        
 elif [[ $(bc <<< "$OCP_VERSION >= 4.12") -eq 1 ]] && [[ $(bc <<< "$OCP_VERSION <= 4.15") -eq 1 ]]; then
-    echo "OCP 4.12 - 4.15 compatible resources..."
-    echo "COO: 0.3.0+"
-    echo "UIPlugins: dashboards, distributed tracing, logging\n"
+    print_title "Deploying OCP 4.12 - 4.15 compatible resources...  "
+    print "COO/ObO: 0.3.0+ required! Image being deployed is $OPERATOR_BUNDLE"
+    print "UIPlugins: dashboards, distributed tracing, logging"
 
-    deploy_observability_operator $OPERATOR_BUNDLE_V03
-    deploy_dashboards
+    deploy_observability_operator $OPERATOR_BUNDLE
     deploy_korrel8r # UIPlugin and Resources for korrel8r, logging, troubleshooting, net observe  
-    oc patch consoles.operator.openshift.io/cluster --type=merge --patch '{ "spec": { "plugins": ["monitoring-plugin", "netobserv-plugin", "logging-view-plugin", "console-dashboards-plugin"]}}'
+    deploy_dashboards
 
 elif [[ $(bc <<< "$OCP_VERSION >= 4.16") -eq 1 ]]; then
-    echo "OCP 4.16+ compatible resources..."
-    echo "COO: 0.3.0+"
-    echo "UIPlugins: dashboards, distributed tracing, logging, troubleshooting\n"
+    print_title "Deploying OCP 4.16+ compatible resources..."
+    print "COO/ObO: 0.3.0+ required! Image being deployed is $OPERATOR_BUNDLE"
+    print "UIPlugins: dashboards, distributed tracing, logging, troubleshooting"
 
-    deploy_observability_operator $OPERATOR_BUNDLE_V04
-    deploy_dashboards
+    deploy_observability_operator $OPERATOR_BUNDLE
     deploy_korrel8r   # UIPlugin and Resources for korrel8r, logging, net observe  
     deploy_troubleshooting
-    oc patch consoles.operator.openshift.io/cluster --type=merge --patch '{ "spec": { "plugins": ["monitoring-plugin", "netobserv-plugin", "logging-view-plugin", "console-dashboards-plugin", "troubleshooting-panel-console-plugin"]}}'
+    deploy_dashboards
+
 else
-    echo "OCP version not supported"
+    print "OCP version not supported"
 fi

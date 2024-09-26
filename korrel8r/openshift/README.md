@@ -1,25 +1,20 @@
-= Set up OpenShift for testing
-:toc: left
 
-These instructions will help you set up a small cluster with observable
-signals for test or demonstration purposes. This is not intended for
-production clusters.
+This directory was taken copied from this repo: https://github.com/korrel8r/korrel8r/tree/main/hack
 
-== Log-in to a cluster
+# Log-in to a cluster
 
 Log into an existing OpenShift cluster as `kubeadmin` or other user with the `cluster-admin` role.
 
 To create a test cluster on your own machine install
 https://developers.redhat.com/products/openshift-local/overview[OpenShift Local]
 
-== Installing Operators
+# Installing Operators
 
 To install operators from the command line:
 
-[source,bash]
-----
+```
 make operators
-----
+```
 
 Deploys the following:
 
@@ -27,20 +22,17 @@ Deploys the following:
 - Red Hat OpenShift Logging Operator in namespace `openshift-logging`
 - Network Observability Operator in namespace `openshift-netobserv-operator`
 
-[NOTE]
-====
-Alternatively you can  install the operators in the Openshift console from _Operators > OperatorHub_.
+NOTES: Alternatively you can  install the operators in the Openshift console from _Operators > OperatorHub_.
 Use the "Provided by Red Hat" version of each operator.
-====
 
-== Creating resources
+
+# Creating resources
 
 Create an instance of the required resources for each operator, from the CLI:
 
-[source,bash]
-----
+```
 make resources
-----
+```
 
 Deploys into the following namespaces:
 
@@ -48,17 +40,16 @@ Deploys into the following namespaces:
 - `openshift-logging`: `cluserlogging` and `clusterlogforwarder` with `lokistack` for log storage.
 - `netobserv`: `flowcollector` with  `lokistack` for flow event storage.
 
-== Viewing in the Console
+# Viewing in the Console
 
 From the OpenShift console:
 
 - _Observe > Logs_
 - _Observe > Network Traffic_
 
-== Uninstalling
+# Uninstalling
 
-[source,bash]
-----
+```
 make clean-resources
 make clean-operators
-----
+```

@@ -13,3 +13,4 @@ monitoring-scale-down:
 PHONY: monitoring-cleanup
 monitoring-cleanup:
 	oc patch clusterversion version --type json -p "$(cat enable-monitoring.yaml)"
+

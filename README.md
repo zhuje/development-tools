@@ -16,3 +16,8 @@ https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa-sts-cre
 
 Logging 
 Requires an AWS or minio bucket storage 
+
+### Prerequisites 
+- [OpenShift CLI (oc)](https://docs.openshift.com/container-platform/4.16/cli_reference/openshift_cli/getting-started-cli.html) 
+- [operator-sdk CLI](https://sdk.operatorframework.io/docs/installation/)
+- Logged into an Openshift Cluster

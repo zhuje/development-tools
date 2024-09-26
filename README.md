@@ -14,10 +14,9 @@ Requires a STS role
 
 https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa-sts-creating-a-cluster-quickly.html
 
-Logging 
-Requires an AWS or minio bucket storage 
-
 ### Prerequisites 
+- OpenShift Cluster version 4.11+ 
+- Logged into an OpenShift Cluster 
 - [OpenShift CLI (oc)](https://docs.openshift.com/container-platform/4.16/cli_reference/openshift_cli/getting-started-cli.html) 
 - [operator-sdk CLI](https://sdk.operatorframework.io/docs/installation/)
 - Logged into an Openshift Cluster

@@ -30,11 +30,18 @@ deploy_observability_operator(){
     --install-mode AllNamespaces \
     --namespace openshift-operators \
 	--security-context-config restricted
+    
+    if [ $? -ne 0 ]; then
+        echo
+        printf "${RED} Error: command 'deploy_observability_operator' failed ${ENDCOLOR}"
+        echo
+        exit 1
+    fi
 }
 
 deploy_dashboards() {
     (cd  ../dashboards && ./deploy-dashboards.sh )
-    (cd  ../coo && oc apply -f ui-plugin-dashboards.yaml )
+    (cd ../coo && oc apply -f ui-plugin-dashboards.yaml)
 }
 
 deploy_korrel8r(){
@@ -48,6 +55,12 @@ deploy_troubleshooting(){
     (cd  ../coo && oc apply -f ui-plugin-troubleshooting.yaml )
 }
 
+deploy_tracing(){
+    printf "\n${GREEN} *** Deploying Tracing *** ${ENDCOLOR}\n"
+    (cd  ../tracing && make operators && make resources)
+    (cd  ../coo && oc apply -f ui-plugin-tracing.yaml )
+}
+
 print(){
     echo
     echo $1 
@@ -58,6 +71,12 @@ print_title(){
     echo
     printf "${GREEN}*** $1 ***${ENDCOLOR}"
     echo
+}
+
+print_env_vars(){
+    print_title "Enviornment Variables"
+    printf "\n${GREEN} OPERATOR_BUNDLE: $OPERATOR_BUNDLE ${ENDCOLOR}\n"
+    printf "\n${GREEN} OCP version: $OCP_VERSION ${ENDCOLOR}\n"
 }
 
 # Deploy UIPlugins and Observability Operator based on OpenShift Version 
@@ -77,16 +96,20 @@ elif [[ $(bc <<< "$OCP_VERSION >= 4.12") -eq 1 ]] && [[ $(bc <<< "$OCP_VERSION <
     deploy_observability_operator $OPERATOR_BUNDLE
     deploy_korrel8r # UIPlugin and Resources for korrel8r, logging, troubleshooting, net observe  
     deploy_dashboards
+    deploy_tracing
 
 elif [[ $(bc <<< "$OCP_VERSION >= 4.16") -eq 1 ]]; then
     print_title "Deploying OCP 4.16+ compatible resources..."
     print "COO/ObO: 0.3.0+ required! Image being deployed is $OPERATOR_BUNDLE"
     print "UIPlugins: dashboards, distributed tracing, logging, troubleshooting"
 
-    deploy_observability_operator $OPERATOR_BUNDLE
+    # deploy_observability_operator $OPERATOR_BUNDLE
+
+    deploy_dashboards
     deploy_korrel8r   # UIPlugin and Resources for korrel8r, logging, net observe  
     deploy_troubleshooting
-    deploy_dashboards
+    deploy_tracing
+
 
 else
     print "OCP version not supported"

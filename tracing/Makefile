@@ -1,7 +1,7 @@
 operators:
 	(cd base && oc apply -f 00_projects.yaml && oc apply -f 10_operators.yaml) 
-	(cd ../korrel8r && ./wait.sh subscription openshift-opentelemetry-operator opentelemetry-product)
-	(cd ../korrel8r && ./wait.sh subscription openshift-tempo-operator tempo-product)
+	(cd .. && ./wait.sh subscription openshift-opentelemetry-operator opentelemetry-product)
+	(cd .. && ./wait.sh subscription openshift-tempo-operator tempo-product)
 
 resources: 
 	(cd base && oc apply -f hotrod.yaml)

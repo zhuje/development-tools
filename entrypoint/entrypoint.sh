@@ -9,7 +9,7 @@ ENDCOLOR='\033[0m' # No Color
 RED='\033[0;31m'
 
 # Enviornment variables: Observability operator test images 
-OPERATOR_BUNDLE=${OPERATOR_BUNDLE:="quay.io/gbernal/observability-operator-bundle:0.4.0-dev-tp"}
+OPERATOR_BUNDLE=${OPERATOR_BUNDLE:="quay.io/jezhu/observability-operator-bundle:0.4.0-release"}
 printf "\n${GREEN} OPERATOR_BUNDLE: $OPERATOR_BUNDLE ${ENDCOLOR}\n"
 
 # OpenShift Version
@@ -103,14 +103,12 @@ elif [[ $(bc <<< "$OCP_VERSION >= 4.16") -eq 1 ]]; then
     print "COO/ObO: 0.3.0+ required! Image being deployed is $OPERATOR_BUNDLE"
     print "UIPlugins: dashboards, distributed tracing, logging, troubleshooting"
 
-    # deploy_observability_operator $OPERATOR_BUNDLE
+    deploy_observability_operator $OPERATOR_BUNDLE
 
     deploy_dashboards
     deploy_korrel8r   # UIPlugin and Resources for korrel8r, logging, net observe  
     deploy_troubleshooting
     deploy_tracing
-
-
 else
     print "OCP version not supported"
 fi

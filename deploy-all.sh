@@ -9,18 +9,13 @@ ENDCOLOR='\033[0m' # No Color
 RED='\033[0;31m'
 
 # Enviornment variables: Observability operator test images 
-OPERATOR_BUNDLE=${OPERATOR_BUNDLE:="quay.io/jezhu/observability-operator-bundle:0.4.0-release"}
+OPERATOR_BUNDLE=${OPERATOR_BUNDLE:="quay.io/openshift-observability-ui/observability-ui-operator-bundle:0.4.0"}
 printf "\n${GREEN} OPERATOR_BUNDLE: $OPERATOR_BUNDLE ${ENDCOLOR}\n"
 
 # OpenShift Version
 OCP=$(oc version --output json | jq -r '.openshiftVersion')
 OCP_VERSION="${OCP:0:4}"
 printf "\n${GREEN} OCP version: $OCP_VERSION ${ENDCOLOR}\n"
-
-# Resources for other Observability operator test image versions
-OPERATOR_BUNDLE_V04=${OPERATOR_BUNDLE_V04:="quay.io/gbernal/observability-operator-bundle:0.4.0-dev-tp"}
-OPERATOR_BUNDLE_V03=${OPERATOR_BUNDLE_V03:="quay.io/gbernal/observability-operator-bundle:0.3.0-ui-v1-10"}
-OPERATOR_BUNDLE_V02=${OPERATOR_BUNDLE_V02:="quay.io/gbernal/observability-operator-bundle:0.2.0-dev-3"}
 
 deploy_observability_operator(){
     echo "Deploying Observability Operator with $1"
@@ -40,25 +35,25 @@ deploy_observability_operator(){
 }
 
 deploy_dashboards() {
-    (cd  ../dashboards && ./deploy-dashboards.sh )
-    (cd ../coo && oc apply -f ui-plugin-dashboards.yaml)
+    (cd  dashboards && ./deploy-dashboards.sh )
+    (cd coo && oc apply -f ui-plugin-dashboards.yaml)
 }
 
 deploy_korrel8r(){
     printf "\n${GREEN} *** Deploying Korrel8r, Logging, Network Observability *** ${ENDCOLOR}\n"
-    (cd  ../korrel8r && cd openshift && make operators && make resources)
-    (cd  ../coo && oc apply -f ui-plugin-logging.yaml )
+    (cd  korrel8r && cd openshift && make operators && make resources)
+    (cd  coo && oc apply -f ui-plugin-logging.yaml )
 }
 
 deploy_troubleshooting(){
     printf "\n${GREEN} *** Deploying Troubleshooting *** ${ENDCOLOR}\n"
-    (cd  ../coo && oc apply -f ui-plugin-troubleshooting.yaml )
+    (cd  coo && oc apply -f ui-plugin-troubleshooting.yaml )
 }
 
 deploy_tracing(){
     printf "\n${GREEN} *** Deploying Tracing *** ${ENDCOLOR}\n"
-    (cd  ../tracing && make operators && make resources)
-    (cd  ../coo && oc apply -f ui-plugin-tracing.yaml )
+    (cd  tracing && make operators && make resources)
+    (cd  coo && oc apply -f ui-plugin-tracing.yaml )
 }
 
 print(){

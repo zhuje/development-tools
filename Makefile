@@ -1,6 +1,6 @@
 OPERATOR_BUNDLE?=quay.io/openshift-observability-ui/observability-ui-operator-bundle:0.4.0
 
-# Terminal output colors 
+# Terminal output colors
 GREEN?='\033[0;32m'
 ENDCOLOR?='\033[0m' # No Color
 RED?='\033[0;31m'
@@ -32,7 +32,7 @@ dashboards:
 
 PHONY: korrel8r
 korrel8r:
-	printf "\n${GREEN} *** Deploying Korrel8r, Logging, Network Observability *** ${ENDCOLOR}\n"
+	printf "\n${GREEN} *** Deploying Logging, Network Observability *** ${ENDCOLOR}\n"
 	(cd  korrel8r-manifests && cd openshift && make operators && make resources)
 	(cd  coo && oc apply -f ui-plugin-logging.yaml)
 
@@ -41,14 +41,19 @@ troubleshooting:
 	printf "\n${GREEN} *** Deploying Troubleshooting *** ${ENDCOLOR}\n"
 	(cd coo && oc apply -f ui-plugin-troubleshooting.yaml)
 
-PHONY: tracing 
-tracing: 
+PHONY: tracing
+tracing:
 	printf "\n${GREEN} *** Deploying Tracing *** ${ENDCOLOR}\n"
 	(cd  tracing-manifests && make operators && make resources)
 	(cd  coo && oc apply -f ui-plugin-tracing.yaml )
 
+.PHONY: acm
+acm:
+	printf "\n${GREEN} *** Deploying ACM *** ${ENDCOLOR}\n"
+	(cd  acm && make operators && make resources)
+
 PHONY: OBO
-OBO: 
+OBO:
 	operator-sdk run bundle \
 	${OPERATOR_BUNDLE} \
 	--install-mode AllNamespaces \

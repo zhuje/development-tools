@@ -49,8 +49,8 @@ tracing:
 
 .PHONY: acm
 acm:
-	printf "\n${GREEN} *** Deploying ACM *** ${ENDCOLOR}\n"
-	(cd  acm && make operators && make resources)
+	printf "\n${GREEN} *** Deploying ACM Observability *** ${ENDCOLOR}\n"
+	(kubectl apply -k acm/)
 
 .PHONY: OBO
 OBO:

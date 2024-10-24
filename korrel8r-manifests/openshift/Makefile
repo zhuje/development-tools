@@ -19,9 +19,9 @@ endif
 $(STORAGE_ENV):
 	echo "STORAGE_CLASS=$(STORAGE_CLASS)" > $@
 
-MINIO_ROLLOUT=../wait.sh rollout minio deployment/minio
+MINIO_ROLLOUT=../../wait.sh rollout minio deployment/minio
 
-LOGGING_ROLLOUT=../wait.sh rollout openshift-logging \
+LOGGING_ROLLOUT=../../wait.sh rollout openshift-logging \
 deployment.apps/cluster-logging-operator \
 deployment.apps/logging-loki-distributor \
 deployment.apps/logging-loki-gateway \
@@ -29,7 +29,7 @@ deployment.apps/logging-loki-querier \
 deployment.apps/logging-loki-query-frontend \
 # deployment.apps/logging-view-plugin
 
-NETOBSERV_ROLLOUT=../wait.sh rollout netobserv \
+NETOBSERV_ROLLOUT=../../wait.sh rollout netobserv \
 deployment.apps/loki-distributor \
 deployment.apps/loki-gateway \
 deployment.apps/loki-querier \

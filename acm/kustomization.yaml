@@ -6,4 +6,4 @@ resources:
 - minio-secret.yaml
 - minio-service.yaml
 - observability.yaml
-
+- custom-rule.yaml

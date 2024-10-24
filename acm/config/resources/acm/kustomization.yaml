@@ -1,3 +1,0 @@
-namespace: open-cluster-management
-resources:
-  - multicluster-hub.yaml

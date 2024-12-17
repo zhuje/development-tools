@@ -1,3 +1,6 @@
+
+# !!! DON'T USE ROSA CLUSTER IT WON'T WORK -- BECAUSE IT'S MANAGED SERVICE!!!
+
 ### Hierarchy Tree for Monitoring-plugin: How resources are managed 
 * Cluster Version Operator 
     * Cluster Monitoring Operator 

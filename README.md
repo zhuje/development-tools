@@ -1,7 +1,7 @@
 # development-tools
 
 ### Miro Mind Map 
-(https://miro.com/app/board/uXjVIHGY4-A=/)(https://miro.com/app/board/uXjVIHGY4-A=/)
+[https://miro.com/app/board/uXjVIHGY4-A=/](https://miro.com/app/board/uXjVIHGY4-A=/)
 
 ### Compatibility Matrix 
 https://github.com/rhobs/observability-operator/blob/main/docs/user-guides/observability-ui-plugins.md

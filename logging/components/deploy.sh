@@ -31,7 +31,7 @@ oc apply -f ui_plugin.yaml
 
 echo " ======= ClusterLogForwarder Config ========= " 
 if [ "$DATA_MODEL" ==  "otel" ]; then 
-    oc apply -f otel_cluster_log_fowarder.yaml
+    oc apply -f otel_cluster_log_forwarder.yaml
 else 
     oc apply -f viaq_cluster_log_forwarder.yaml
 fi

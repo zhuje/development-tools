@@ -12,3 +12,7 @@ https://github.com/rhobs/konflux-coo
 2. run `git submodule add https://github.com/perses/perses-operator`. This will create the submodule 
 3. Add Dockerfile.perses-operator. This is for Konflux to build the image (e.g. perse-operator image). 
 This Dockerfile must use Red Hat certified based-images found [here](https://catalog.redhat.com/).
+
+### Konflux Chatbot 
+https://gitlab.cee.redhat.com/sp-ai/konflux-user-support-bot/-/tree/main?ref_type=heads
+

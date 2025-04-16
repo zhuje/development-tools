@@ -47,3 +47,7 @@ https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa-sts-cre
 To pass your own image of the observability operator bundle use the flag `OPERATOR_BUNDLE`. For example: 
 
 `make coo-resources OPERATOR_BUNDLE="quay.io/test/observability-operator-bundle"`
+
+### Testing Plan 
+#### Monitoring Test Plan 
+https://docs.google.com/document/d/1ZtGEFDOIsLDHnp8Gd0bq41RaRkm0_nrp37gj-mNo9BI/edit?usp=sharing

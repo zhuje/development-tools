@@ -48,6 +48,9 @@ To pass your own image of the observability operator bundle use the flag `OPERAT
 
 `make coo-resources OPERATOR_BUNDLE="quay.io/test/observability-operator-bundle"`
 
-### Testing Plan 
+### Testing  
 #### Monitoring Test Plan 
 https://docs.google.com/document/d/1ZtGEFDOIsLDHnp8Gd0bq41RaRkm0_nrp37gj-mNo9BI/edit?usp=sharing
+
+#### COO Acceptance Criteria 
+https://docs.google.com/document/d/1rBio1lFD3GzWqVP35ZLUdfVDNPwjDSxG08wy5Yo2tG8/edit?tab=t.0#heading=h.bupciudrwmna

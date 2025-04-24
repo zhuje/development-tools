@@ -1,4 +1,5 @@
 # development-tools
+A centralized location for the openshift observability-ui team to keep development-related scripts and information. 
 
 ### Miro Mind Map 
 [https://miro.com/app/board/uXjVIHGY4-A=/](https://miro.com/app/board/uXjVIHGY4-A=/)

@@ -3,15 +3,37 @@
 ### Miro Mind Map 
 [https://miro.com/app/board/uXjVIHGY4-A=/](https://miro.com/app/board/uXjVIHGY4-A=/)
 
+### UI Plugins Life Cycle 
+https://docs.google.com/spreadsheets/d/1iJP8hjod1J_Wqv_sfGglwVYquhsHLRlqjoyvrMBv0FY/edit?gid=0#gid=0
+
+### OCP Life Cycle 
+https://access.redhat.com/support/policy/updates/openshift
+
 ### Compatibility Matrix 
 https://github.com/rhobs/observability-operator/blob/main/docs/user-guides/observability-ui-plugins.md
 
-| __COO Version__ |   __OCP Versions__  | __Dashboards__ | __Distributed Tracing__ | __Logging__ | __Troubleshooting Panel__ |
-| --------------- | ------------------- | -------------- | ----------------------- | ----------- | ------------------------- |
-| 0.2.0           | 4.11                |       ✔        |             ✘           |       ✘     |             ✘             |
-| 0.3.0+          | 4.11 - 4.15         |       ✔        |             ✔           |       ✔     |             ✘             |
-| 0.3.0+          | 4.16+               |       ✔        |             ✔           |       ✔     |             ✔             |
+| __COO Version__ |   __OCP Versions__  | __Dashboards__ | __Distributed Tracing__ | __Logging__ | __Troubleshooting Panel__ | __Monitoring__ |
+| --------------- | ------------------- | -------------- | ----------------------- | ----------- | ------------------------- | ---------------|
+| 0.2.0           | 4.11                |       ✔        |             ✘           |       ✘     |             ✘             |       ✘       |
+| 0.3.0 - 0.4.0   | 4.11 - 4.15         |       ✔        |             ✔           |       ✔     |             ✘             |       ✘       |
+| 0.3.0 - 0.4.0   | 4.16+               |       ✔        |             ✔           |       ✔     |             ✔             |       ✘       |
+| 1.0.0+          | 4.11 - 4.14         |       ✔        |             ✔           |       ✔     |             ✘             |       ✘       |
+| 1.0.0+          | 4.15                |       ✔        |             ✔           |       ✔     |             ✘             |       ✔       |
+| 1.0.0+          | 4.16+               |       ✔        |             ✔           |       ✔     |             ✔             |       ✔       |
 
+
+#### Details on Monitoring Plugin Image Streams: Breaking Changes 
+| __COO Version__ |   __OCP Versions__  |
+COO 1             | 4.12 - 4.14   | PF4
+COO 1.1           | 4.15 - 4-18   | PF5 
+COO TBD           | 4.19+         | PF6 
+
+Upcoming breaking change 
+1. React Router may land in OCP 4.19 or 4.20
+
+Minimize breaking changes to the same version to avoid multiple streams
+1. Konflux maintence of multiple versions/streams of the same component (e.g. Distributed-tracing-0.3, Distributed-tracing-0.4, Logging 6.0 Logging 6.1 all packaged in  COO 1.2)
+2. Backporting becomes more complex. We cannot automatically backport; some manual adjustments are required to accommodate breaking changes. 
 
 ## OpenShift Console Versions vs PatternFly Versions
 https://github.com/openshift/console/blob/main/frontend/packages/console-dynamic-plugin-sdk/README.md#openshift-console-versions-vs-patternfly-versions
@@ -47,6 +69,10 @@ https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa-sts-cre
 To pass your own image of the observability operator bundle use the flag `OPERATOR_BUNDLE`. For example: 
 
 `make coo-resources OPERATOR_BUNDLE="quay.io/test/observability-operator-bundle"`
+
+### Konflux 
+1. UI [https://console.redhat.com/application-pipeline/workspaces/jezhu/applications/perses-operator-staging/activity/pipelineruns](https://console.redhat.com/application-pipeline/workspaces/cluster-observabilit/applications)
+
 
 ### Testing  
 #### Monitoring Test Plan 

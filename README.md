@@ -36,7 +36,7 @@ Minimize breaking changes to the same version to avoid multiple streams
 1. Konflux maintence of multiple versions/streams of the same component (e.g. Distributed-tracing-0.3, Distributed-tracing-0.4, Logging 6.0 Logging 6.1 all packaged in  COO 1.2)
 2. Backporting becomes more complex. We cannot automatically backport; some manual adjustments are required to accommodate breaking changes. 
 
-## OpenShift Console Versions vs PatternFly Versions
+### OpenShift Console Versions vs PatternFly Versions
 https://github.com/openshift/console/blob/main/frontend/packages/console-dynamic-plugin-sdk/README.md#openshift-console-versions-vs-patternfly-versions
 
 Each Console version supports specific version(s) of [PatternFly](https://www.patternfly.org/) in terms
@@ -49,22 +49,12 @@ Console.
 | 4.15.x - 4.18.x | 5.x + 4.x           | New dynamic plugins should use PF 5.x |
 | 4.12.x - 4.14.x | 4.x                 |                                       |
 
-Refer to [PatternFly Upgrade Notes][console-pf-upgrade-notes] containing links to PatternFly documentation.
-
-
 
 ### ROSA Clusters 
 Requires a STS role 
 'ManagedOpenShift'
 
 https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa-sts-creating-a-cluster-quickly.html
-
-### Prerequisites 
-- OpenShift Cluster version 4.11+ 
-- Logged into an OpenShift Cluster 
-- [OpenShift CLI (oc)](https://docs.openshift.com/container-platform/4.16/cli_reference/openshift_cli/getting-started-cli.html) 
-- [operator-sdk CLI](https://sdk.operatorframework.io/docs/installation/)
-- Logged into an Openshift Cluster
 
 ### Makefile 
 To pass your own image of the observability operator bundle use the flag `OPERATOR_BUNDLE`. For example: 

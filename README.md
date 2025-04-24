@@ -24,7 +24,7 @@ https://github.com/rhobs/observability-operator/blob/main/docs/user-guides/obser
 
 #### Details on Monitoring Plugin Image Streams: Breaking Changes 
 | __COO Version__  | __OCP Versions__    | __Breaking Change__  |
-| ---------------  | ------------------- |                      |
+| ---------------  | ------------------- | -------------------  |
 |COO 1             | 4.12 - 4.14         | PF4                  |
 |COO 1.1           | 4.15 - 4-18         | PF5                  |
 |COO TBD           | 4.19+               | PF6                  |

@@ -18,9 +18,9 @@ oc apply -f lokistack.yaml
 
 # collector service account and RBAC
 echo " ======= Collector Configurguration ======= " 
+oc project openshift-logging
 oc create sa collector -n openshift-logging
 oc adm policy add-cluster-role-to-user logging-collector-logs-writer -z collector
-oc project openshift-logging
 oc adm policy add-cluster-role-to-user collect-application-logs -z collector
 oc adm policy add-cluster-role-to-user collect-audit-logs -z collector
 oc adm policy add-cluster-role-to-user collect-infrastructure-logs -z collector

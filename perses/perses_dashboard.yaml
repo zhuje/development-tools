@@ -21,6 +21,20 @@ spec:
             matchers:
               - up{job="kubelet", metrics_path="/metrics/cadvisor"}
         name: cluster
+    - kind: ListVariable
+      spec:
+        allowAllValue: false
+        allowMultiple: false
+        display:
+          hidden: false
+        name: interval
+        plugin:
+          kind: StaticListVariable
+          spec:
+            values:
+              - 1m
+              - 5m
+        sort: alphabetical-asc
   panels:
     "0_0":
       kind: Panel

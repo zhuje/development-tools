@@ -33,5 +33,7 @@ Requires both Cluster Observability Operator (COO handles monitoring-console-plu
 3. Then modify the CMO deployment spec to reference monitoring-plugin image in previous step (https://github.com/openshift/cluster-monitoring-operator/blob/5d1fd1bb52eeb9b2f877c45de0cf93e2f9fffb95/manifests/0000_50_cluster-monitoring-operator_05-deployment.yaml#L76)
 4. `./scale.sh up` Scale up the monitoring-plugin deployment to apply the new image changes 
 
+### Enable Virtualization 
+Follow instructions in this [doc](https://docs.google.com/document/d/1rBio1lFD3GzWqVP35ZLUdfVDNPwjDSxG08wy5Yo2tG8/edit?tab=t.0#heading=h.tde5tm3v47ck)
 
 

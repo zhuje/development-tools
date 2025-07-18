@@ -27,11 +27,11 @@ Requires both Cluster Observability Operator (COO handles monitoring-console-plu
 2. OperatorHub > Install COO > modify Yaml to replace "ui-monitoring" image with the newly built image from 'make build-dev-mcp-image"
 
 #### Redeploy CMO:
-1. In your monitoring-plugin repository: `make build-image`
-2. In this repository, set CMO to unmanaged though: `./scale.sh down` 
+1. `make build-image` in your monitoring-plugin repository
+2. `./scale.sh down` in this repository, to set CMO to unmanaged 
    - source https://access.redhat.com/solutions/6548111 (Red Hat associate access required)
 3. Then modify the CMO deployment spec to reference monitoring-plugin image in previous step (https://github.com/openshift/cluster-monitoring-operator/blob/5d1fd1bb52eeb9b2f877c45de0cf93e2f9fffb95/manifests/0000_50_cluster-monitoring-operator_05-deployment.yaml#L76)
-4. Scale up the monitoring-plugin deployment to apply the new image changes `oc scale --replicas=1 -n openshift-monitoring deployment/monitoring-plugin`  
+4. `./scale.sh up` Scale up the monitoring-plugin deployment to apply the new image changes 
 
 
 

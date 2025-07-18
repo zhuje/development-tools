@@ -5,7 +5,9 @@
 ### Hierarchy Tree for Monitoring-plugin: How resources are managed 
 * Cluster Version Operator 
     * Cluster Monitoring Operator 
-        * Monitoring-Plugin
+        * monitoring-plugin
+    * Cluster Observability Operator
+        * monitoring-console- plugin
 
 ### Monitoring-plugin Redeployment 
 

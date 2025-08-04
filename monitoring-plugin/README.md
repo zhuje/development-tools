@@ -2,10 +2,17 @@
 # !!! DON'T USE ROSA CLUSTER IT WON'T WORK -- BECAUSE IT'S MANAGED SERVICE!!!
 
 ### Scale Down/Up Cluster Monitoring Operator 
-1. Scaling down the cluster monitoring operator allows you to replace the default monitoring plugin image with your test image. 
+1. Scaling down the cluster monitoring operator  (CMO) and setting it to unmanaged allows you to replace the default monitoring plugin image with your test image without the CMO overwritting the changes. 
 ```
 ./scale.sh down
 ```
+2. Modify Deployments > Cluster Monitoring Operator to replace the default monitoring plugin image with your test image [here](https://github.com/openshift/cluster-monitoring-operator/blob/5d1fd1bb52eeb9b2f877c45de0cf93e2f9fffb95/manifests/0000_50_cluster-monitoring-operator_05-deployment.yaml#L76)
+
+3. Then scale up the deployment/cluster-monitoring-operator and deployment/monitoring-plugin to apply your test image 
+```
+./scale.sh up
+```
+
 ### Hierarchy Tree for Monitoring-plugin: How resources are managed 
 * Cluster Version Operator 
     * Cluster Monitoring Operator 

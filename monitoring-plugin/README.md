@@ -1,7 +1,7 @@
 
 # !!! DON'T USE ROSA CLUSTER IT WON'T WORK -- BECAUSE IT'S MANAGED SERVICE!!!
 
-### Scale Down/Up Cluster Monitoring Operator 
+## Quick Start: Scale Down/Up Cluster Monitoring Operator 
 1. Scaling down the cluster monitoring operator  (CMO) and setting it to unmanaged allows you to replace the default monitoring plugin image with your test image without the CMO overwritting the changes. 
 ```
 ./scale.sh down
@@ -12,15 +12,14 @@
 ```
 ./scale.sh up
 ```
-
-### Hierarchy Tree for Monitoring-plugin: How resources are managed 
+## Hierarchy Tree for Monitoring-plugin: How resources are managed 
 * Cluster Version Operator 
     * Cluster Monitoring Operator 
         * monitoring-plugin
     * Cluster Observability Operator
         * monitoring-console- plugin
 
-### Monitoring-plugin Redeployment 
+## Monitoring-plugin Redeployment 
 
 #### Option 1 to Deploy Monitoring-plugin image 
 1) Set CMO to unmanaged though: https://access.redhat.com/solutions/6548111 (Red Hat associate access required)

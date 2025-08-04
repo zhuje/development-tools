@@ -1,7 +1,11 @@
 
 # !!! DON'T USE ROSA CLUSTER IT WON'T WORK -- BECAUSE IT'S MANAGED SERVICE!!!
 
-
+### Scale Down/Up Cluster Monitoring Operator 
+1. Scaling down the cluster monitoring operator allows you to replace the default monitoring plugin image with your test image. 
+```
+./scale.sh down
+```
 ### Hierarchy Tree for Monitoring-plugin: How resources are managed 
 * Cluster Version Operator 
     * Cluster Monitoring Operator 

@@ -1,6 +1,6 @@
 # kill-port shortcut 
 # To use: kill-port 9090
-killport() {
+kill-port() {
   if [ -z "$1" ]; then
     echo "Error: killport() <port> requires a port number"
     return 1

@@ -2,7 +2,7 @@ apiVersion: perses.dev/v1alpha2
 kind: PersesDashboard
 metadata:
   name: openshift-cluster-sample-dashboard
-  namespace: perses-dev
+  namespace: openshift-cluster-observability-operator
 spec:
   config:
     display:

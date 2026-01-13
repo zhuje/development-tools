@@ -1,5 +1,6 @@
 #!/bin/bash
 oc new-project perses-dev
+oc new-project observ-test
 
 oc apply -f - <<EOF
 kind: ClusterRole

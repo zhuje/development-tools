@@ -31,6 +31,7 @@ YAML_FILES=(
     "thanos-compact-overview-1var.yaml"
     "perses-datasource-sample.yaml"
     "thanos-querier-datasource.yaml"
+    "lmd6v93sz-acm-dashboard.yaml"
 )
 
 # Apply each file with namespace replaced

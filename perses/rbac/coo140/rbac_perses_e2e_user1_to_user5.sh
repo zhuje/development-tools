@@ -1104,6 +1104,21 @@ roleRef:
   name: perses-prometheus-api-editor
 EOF
 
+oc apply -f - <<EOF
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: user5-perses-prometheus-api-editor
+subjects:
+  - kind: User
+    apiGroup: rbac.authorization.k8s.io
+    name: user5
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: perses-prometheus-api-editor
+EOF
+
 #Perses ClusterRoleBindings
 oc apply -f - <<EOF
 kind: ClusterRoleBinding
@@ -1159,6 +1174,21 @@ subjects:
   - kind: User
     apiGroup: rbac.authorization.k8s.io
     name: user4
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: persesglobaldatasource-viewer-role
+EOF
+
+oc apply -f - <<EOF
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: user5-persesglobaldatasource-viewer
+subjects:
+  - kind: User
+    apiGroup: rbac.authorization.k8s.io
+    name: user5
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

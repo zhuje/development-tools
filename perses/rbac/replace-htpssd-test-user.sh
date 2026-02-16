@@ -11,6 +11,7 @@
     USER2="user2"
     USER3="user3"
     USER4="user4"
+    USER5="user5"
     DEFAULT_HTPASSWD_FILE="./users.htpasswd"
 
 
@@ -33,6 +34,8 @@
     echo "password: ${GREEN} password ${ENDCOLOR} \n"
     echo "username: ${GREEN} ${USER4} ${ENDCOLOR}"
     echo "password: ${GREEN} password ${ENDCOLOR} \n"
+    echo "username: ${GREEN} ${USER5} ${ENDCOLOR}"
+    echo "password: ${GREEN} password ${ENDCOLOR} \n"
 
 # To create a different htpsswd user use the following command: 
     # htpasswd -c -B -b </path/to/users.htpasswd> <username> <password>
@@ -40,6 +43,7 @@
     htpasswd -B -b users.htpasswd ${USER2} password
     htpasswd -B -b users.htpasswd ${USER3} password
     htpasswd -B -b users.htpasswd ${USER4} password
+    htpasswd -B -b users.htpasswd ${USER5} password
 
 # Create the htpsswd secret 
     echo "${GREEN} ** Creating htpsswd secret ** ${ENDCOLOR}"
@@ -131,6 +135,21 @@
     # echo "${GREEN}Granting policy add-role-to-user cluster-monitoring-view ${ENDCOLOR} " 
     # oc -n ${NAMESPACE} policy add-role-to-user cluster-monitoring-view  ${USER4}
 
+# Apply permissions to test-user - you must be logged in a cluster administratior (e.g. kubeadmin)
+    echo "\n** Granting permission for  \n user: ${GREEN} ${USER5}  ${ENDCOLOR}   \n namepsace: ${GREEN} ${NAMESPACE} ${ENDCOLOR}\n "
+    
+    # echo "${GREEN}Granting policy add-role-to-user view ${ENDCOLOR}  " 
+    oc -n ${NAMESPACE} policy add-role-to-user admin ${USER5}
+    
+    # echo "${GREEN}Granting policy add-role-to-user cluster-logging-application-view ${ENDCOLOR}  " 
+    # oc -n ${NAMESPACE} policy add-role-to-user cluster-logging-application-view ${USER5}
+    
+    # echo "${GREEN}Granting policy add-role-to-user monitoring-rules-edit ${ENDCOLOR}  " 
+    # oc -n ${NAMESPACE} policy add-role-to-user monitoring-rules-edit ${USER5}
+    
+    # echo "${GREEN}Granting policy add-role-to-user cluster-monitoring-view ${ENDCOLOR} " 
+    # oc -n ${NAMESPACE} policy add-role-to-user cluster-monitoring-view  ${USER5}
+
 # Open browser for UI 
     echo "** Openning Browser to OCP UI, here are your credentials: ** \n"
     echo "username: ${GREEN} ${USER1} ${ENDCOLOR}"
@@ -140,6 +159,8 @@
     echo "username: ${GREEN} ${USER3} ${ENDCOLOR}"
     echo "password: ${GREEN} password ${ENDCOLOR} \n"
     echo "username: ${GREEN} ${USER4} ${ENDCOLOR}"
+    echo "password: ${GREEN} password ${ENDCOLOR} \n"
+    echo "username: ${GREEN} ${USER5} ${ENDCOLOR}"
     echo "password: ${GREEN} password ${ENDCOLOR} \n"
 
     sleep 3s 
